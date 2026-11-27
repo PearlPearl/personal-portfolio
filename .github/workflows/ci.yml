@@ -2,7 +2,7 @@ name: Portfolio CI
 
 on:
   push:
-    branches: [main, task-001-portfolio-homepage]
+    branches: [main]
   pull_request:
   workflow_dispatch:
 
@@ -20,18 +20,21 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-      - name: Resolve and install dependencies
-        run: npm install --no-audit --no-fund
-      - name: Export the generated lockfile for the review commit
-        run: |
-          echo PORTFOLIO_LOCKFILE_BEGIN
-          gzip -c package-lock.json | base64
-          echo PORTFOLIO_LOCKFILE_END
+          cache: npm
+      - run: npm ci
       - run: npm run check
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npm test
-      - run: npm run screenshots
+      - run: node tests/screenshots.mjs
+      - name: Measure mobile Lighthouse performance
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4321 > "$RUNNER_TEMP/portfolio-preview.log" 2>&1 &
+          preview_pid=$!
+          trap 'kill "$preview_pid" 2>/dev/null || true' EXIT
+          curl --silent --show-error --retry 15 --retry-all-errors --retry-delay 1 --fail http://127.0.0.1:4321/ > /dev/null
+          npx --yes lighthouse@12.6.0 http://127.0.0.1:4321 --quiet --only-categories=performance --chrome-flags="--headless --no-sandbox" --output=json --output-path="$RUNNER_TEMP/portfolio-lighthouse.json"
+          node -e 'const r = require(process.argv[1]); console.log("PORTFOLIO_METRICS", JSON.stringify({performance:r.categories.performance.score * 100,lcpMs:r.audits["largest-contentful-paint"].numericValue,cls:r.audits["cumulative-layout-shift"].numericValue,tbtMs:r.audits["total-blocking-time"].numericValue}));' "$RUNNER_TEMP/portfolio-lighthouse.json"
       - uses: actions/upload-artifact@v4
         with:
           name: portfolio-screenshots

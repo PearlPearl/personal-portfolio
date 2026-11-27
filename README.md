@@ -17,8 +17,6 @@ npm run dev
 
 Open [localhost:4321](http://localhost:4321).
 
-For an initial checkout that lacks `package-lock.json`, run `npm install` once to generate it. Commit the resulting lockfile before using `npm ci` in Codespaces or CI.
-
 | Command | Purpose |
 | --- | --- |
 | `npm run dev` | Start the development server on port 4321. |
