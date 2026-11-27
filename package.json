@@ -1,0 +1,30 @@
+{
+  "name": "personal-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": "22.22.0" },
+  "scripts": {
+    "dev": "astro dev",
+    "check": "astro check",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "screenshots": "npm run build && node tests/screenshots.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.2.5",
+    "@fontsource-variable/space-grotesk": "^5.2.8",
+    "@tailwindcss/vite": "^4.1.17",
+    "astro": "^5.16.0",
+    "tailwindcss": "^4.1.17"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.5",
+    "@axe-core/playwright": "^4.10.2",
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^22.0.0",
+    "typescript": "~5.9.3"
+  }
+}

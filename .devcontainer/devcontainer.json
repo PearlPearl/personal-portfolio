@@ -1,0 +1,7 @@
+{
+  "name": "Personal Portfolio",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm",
+  "forwardPorts": [4321],
+  "portsAttributes": { "4321": { "label": "Portfolio", "onAutoForward": "notify" } },
+  "postCreateCommand": "npm ci"
+}

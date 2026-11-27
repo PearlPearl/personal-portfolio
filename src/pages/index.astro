@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Companion from '../components/Companion.astro';
+import Hero from '../sections/Hero.astro';
+import Overview from '../sections/Overview.astro';
+import Work from '../sections/Work.astro';
+import Expertise from '../sections/Expertise.astro';
+import Journey from '../sections/Journey.astro';
+import Availability from '../sections/Availability.astro';
+---
+<BaseLayout>
+  <Header />
+  <main id="main" tabindex="-1">
+    <Hero />
+    <Overview />
+    <Work />
+    <Expertise />
+    <Journey />
+    <Availability />
+  </main>
+  <Footer />
+  <Companion />
+</BaseLayout>

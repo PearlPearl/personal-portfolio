@@ -1,0 +1,19 @@
+---
+import SectionHeading from '../components/SectionHeading.astro';
+import Icon from '../components/Icon.astro';
+import { expertise } from '../content/portfolio';
+---
+<section class="shell section" id="expertise" aria-labelledby="expertise-heading" tabindex="-1">
+  <SectionHeading id="expertise-heading" label="Technical expertise" title="Tools & practices" description="Example focus areas for a .NET developer. The final skills profile is pending." />
+  <div class="expertise-grid grid gap-4">
+    {expertise.map((group) => (
+      <article class="tile expertise-card">
+        <div class="icon-tile"><Icon name={group.icon} /></div>
+        <h3>{group.title}</h3>
+        <ul class="tag-list" aria-label={group.title}>
+          {group.skills.map((skill) => <li>{skill}</li>)}
+        </ul>
+      </article>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,43 @@
+name: Portfolio CI
+
+on:
+  push:
+    branches: [main, task-001-portfolio-homepage]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      ASTRO_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - name: Resolve and install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Export the generated lockfile for the review commit
+        run: |
+          echo PORTFOLIO_LOCKFILE_BEGIN
+          gzip -c package-lock.json | base64
+          echo PORTFOLIO_LOCKFILE_END
+      - run: npm run check
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm test
+      - run: npm run screenshots
+      - uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-screenshots
+          path: artifacts/screenshots/
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report/

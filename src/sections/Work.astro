@@ -1,0 +1,23 @@
+---
+import SectionHeading from '../components/SectionHeading.astro';
+import ProjectArt from '../components/ProjectArt.astro';
+import { projects } from '../content/portfolio';
+---
+<section class="shell section" id="work" aria-labelledby="work-heading" tabindex="-1">
+  <SectionHeading id="work-heading" label="Portfolio" title="Featured projects" description="Illustrative .NET project concepts. Verified case studies are pending." />
+  <div class="work-grid grid gap-4">
+    {projects.map((project) => (
+      <article class="tile project-card">
+        <ProjectArt visual={project.visual} />
+        <div class="project-copy">
+          <p class="category">{project.category}</p>
+          <h3>{project.title}</h3>
+          <p>{project.description}</p>
+          <ul class="tag-list" aria-label="Suggested technologies">
+            {project.technologies.map((technology) => <li>{technology}</li>)}
+          </ul>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

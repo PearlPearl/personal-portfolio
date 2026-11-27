@@ -1,0 +1,17 @@
+---
+import Icon from '../components/Icon.astro';
+import { availability } from '../content/portfolio';
+const { resume, contact } = availability;
+---
+<div class="shell section availability-grid grid gap-4">
+  <section class="tile availability-card" id="resume" aria-labelledby="resume-heading" tabindex="-1">
+    <div class="icon-tile"><Icon name="document" size={23} /></div>
+    <h2 id="resume-heading">Résumé</h2>
+    {resume ? <a class="button button-outline" href={resume.href} download>Download résumé</a> : <p>A résumé PDF will be available once it’s provided.</p>}
+  </section>
+  <section class="tile availability-card contact-card" id="contact" aria-labelledby="contact-heading" tabindex="-1">
+    <div class="icon-tile"><Icon name="mail" size={23} /></div>
+    <h2 id="contact-heading">Get in touch</h2>
+    {contact ? <a class="button button-outline" href={contact.href}>{contact.label}</a> : <p>Contact details will appear here once they’re confirmed.</p>}
+  </section>
+</div>
