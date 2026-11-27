@@ -1,0 +1,41 @@
+---
+interface Props { visual: 'signal' | 'relay'; }
+const { visual } = Astro.props;
+---
+<div class:list={['project-art', `project-art-${visual}`]} aria-hidden="true">
+  <svg viewBox="0 0 500 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {visual === 'signal' ? (
+      <>
+        <defs>
+          <linearGradient id="signal-area" x1="0" x2="0" y1="0" y2="1" gradientUnits="objectBoundingBox">
+            <stop stop-color="#789aff" stop-opacity=".48"/><stop offset="1" stop-color="#789aff" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <rect x="48" y="27" width="404" height="168" rx="11" fill="#10192c" stroke="#6286f1" stroke-opacity=".56"/>
+        <path d="M48 55h404M108 55v140" stroke="#6d91ff" stroke-opacity=".28"/>
+        <path d="M66 72h24m-24 13h19m-19 13h21m-21 13h16m-16 13h23M128 70h48m-48 11h31" stroke="#7697ef" stroke-opacity=".42" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="66" cy="41" r="2.5" fill="#89a6ff"/><circle cx="76" cy="41" r="2.5" fill="#534ba7"/><circle cx="86" cy="41" r="2.5" fill="#40578f"/>
+        <path d="M127 101h307m-307 19h307m-307 19h307m-307 19h307m-307 19h307m-271-76v76m46-76v76m46-76v76m46-76v76m46-76v76m46-76v76" stroke="#648cff" stroke-opacity=".19"/>
+        <path d="m128 163 29-8 25 8 25-23 29 10 27-15 21 3 28-20 26 10 27-16 26 10 41-25v80H128Z" fill="url(#signal-area)"/>
+        <path d="m128 163 29-8 25 8 25-23 29 10 27-15 21 3 28-20 26 10 27-16 26 10 41-25" stroke="#a6bcff" stroke-width="2" stroke-linejoin="round"/>
+        <circle cx="365" cy="112" r="3.5" fill="#d4e0ff"/>
+        <rect x="366" y="66" width="66" height="16" rx="4" fill="#24366c"/>
+        <path d="M377 74h29" stroke="#a6bcff" stroke-opacity=".65" stroke-width="2" stroke-linecap="round"/>
+      </>
+    ) : (
+      <>
+        <path d="M93 110h105m104 0h104m-157-49V43m0 134v-19" stroke="#55d9b5" stroke-opacity=".48" stroke-dasharray="3 5" stroke-width="1.5"/>
+        <path d="M116 102h62m-62 16h62m145-16h60m-60 16h60" stroke="#55d9b5" stroke-opacity=".29"/>
+        <rect x="199" y="60" width="102" height="100" rx="19" fill="#0e2a28" stroke="#5bdfb9" stroke-opacity=".8"/>
+        <rect x="209" y="70" width="82" height="80" rx="12" fill="#163a36" stroke="#77efd2" stroke-opacity=".23"/>
+        <path d="m250 86 20 12v24l-20 12-20-12V98l20-12Z" stroke="#83f0d1" stroke-width="1.5"/>
+        <path d="m230 98 20 12 20-12m-20 12v24" stroke="#83f0d1" stroke-opacity=".67" stroke-width="1.4"/>
+        <rect x="62" y="83" width="56" height="54" rx="10" fill="#12312d" stroke="#55d9b5" stroke-opacity=".58"/>
+        <rect x="382" y="83" width="56" height="54" rx="10" fill="#12312d" stroke="#55d9b5" stroke-opacity=".58"/>
+        <path d="M78 102h24v16H78zm0 0 12 8 12-8m299 8 6 6 11-13" stroke="#9ceed6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="159" cy="110" r="3.5" fill="#64ddbc"/><circle cx="339" cy="110" r="3.5" fill="#64ddbc"/>
+        <circle cx="250" cy="36" r="5" fill="#3d957e"/><circle cx="250" cy="184" r="5" fill="#3d957e"/>
+      </>
+    )}
+  </svg>
+</div>

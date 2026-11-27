@@ -1,0 +1,17 @@
+---
+import SectionHeading from '../components/SectionHeading.astro';
+import Icon from '../components/Icon.astro';
+import { overview } from '../content/portfolio';
+---
+<section class="shell section overview" id="overview" aria-labelledby="overview-heading" tabindex="-1">
+  <SectionHeading id="overview-heading" label="Overview" title="Engineering with intent." />
+  <div class="overview-grid grid gap-4">
+    {overview.map((item) => (
+      <article class="tile overview-card">
+        <div class="icon-tile"><Icon name={item.icon} size={22} /></div>
+        <h3>{item.title}</h3>
+        <p>{item.description}</p>
+      </article>
+    ))}
+  </div>
+</section>

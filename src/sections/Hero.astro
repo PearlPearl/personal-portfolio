@@ -1,0 +1,18 @@
+---
+import DigitalCore from '../components/DigitalCore.astro';
+import Icon from '../components/Icon.astro';
+import { profile } from '../content/portfolio';
+const [first, second, accent] = profile.headline;
+---
+<section class="shell hero" aria-labelledby="hero-title">
+  <div class="hero-copy">
+    <p class="role-pill"><span></span>{profile.role}</p>
+    <h1 id="hero-title"><span>{first}</span> <span>{second}</span> <span class="headline-accent">{accent}</span></h1>
+    <p class="hero-description">{profile.introduction}</p>
+    <div class="hero-actions flex flex-wrap">
+      <a href="#work" class="button button-primary"><Icon name="layers" size={18} />Explore my work</a>
+      <a href="#resume" class="button button-outline"><Icon name="document" size={18} />View résumé</a>
+    </div>
+  </div>
+  <DigitalCore />
+</section>

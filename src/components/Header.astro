@@ -1,0 +1,31 @@
+---
+import Brand from './Brand.astro';
+import Icon from './Icon.astro';
+import { navigation } from '../content/portfolio';
+---
+<header id="top" class="site-header" data-header>
+  <div class="shell header-inner flex items-center justify-between">
+    <Brand />
+    <nav id="site-navigation" class="site-nav" aria-label="Primary" data-navigation>
+      <ul class="nav-list">
+        {navigation.map(({ label, href }) => <li><a href={href}>{label}</a></li>)}
+        <li class="mobile-contact"><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-controls flex items-center">
+      <button class="icon-button theme-control" type="button" aria-label="Light theme" aria-pressed="false" data-theme-toggle hidden>
+        <span class="sun-icon"><Icon name="sun" size={19} /></span>
+        <span class="moon-icon"><Icon name="moon" size={19} /></span>
+      </button>
+      <button class="icon-button menu-control" type="button" aria-label="Navigation menu" aria-expanded="false" aria-controls="site-navigation" data-menu-toggle hidden>
+        <span class="open-icon"><Icon name="menu" size={20} /></span>
+        <span class="close-icon"><Icon name="close" size={20} /></span>
+      </button>
+      <a href="#contact" class="button button-outline header-contact">Contact</a>
+    </div>
+  </div>
+</header>
+<script>
+  import { initializeHeader } from '../scripts/header';
+  initializeHeader();
+</script>

@@ -1,0 +1,20 @@
+---
+import SectionHeading from '../components/SectionHeading.astro';
+import { career } from '../content/portfolio';
+---
+<section class="shell section journey" id="journey" aria-labelledby="journey-heading" tabindex="-1">
+  <SectionHeading id="journey-heading" label="Journey" title="Career timeline" />
+  <div class="tile journey-card">
+    {career.length ? (
+      <ol class="timeline">
+        {career.map(({ title, organization, period, summary }) => (
+          <li><p class="category">{period}</p><h3>{title} · {organization}</h3><p>{summary}</p></li>
+        ))}
+      </ol>
+    ) : (
+      <div class="timeline">
+        <div><p class="category">Pending</p><h3>Career details</h3><p>Verified roles, dates, and responsibilities will appear here.</p></div>
+      </div>
+    )}
+  </div>
+</section>
